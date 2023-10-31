@@ -1,5 +1,6 @@
 import { use } from "react"
 import axios from "axios"
+import Link from "next/link"
 
 async function getAllWords() {
   const words = axios
@@ -23,7 +24,7 @@ type Word = {
   user_id: number;
 }
 
-function AllWords() {
+function AllWordsList() {
   const words: Word[] = use(getAllWords());
   if(words === null) {
     return <p>登録済みの単語はありません</p>;
@@ -31,7 +32,10 @@ function AllWords() {
     return(
       <div>
         {words.map((word) => (
-          <div>{word.word}</div>
+          <Link
+            key={word.id} href={`/${word.id}`}>
+            {word.word}
+          </Link>
         ))}
       </div>
     );
@@ -42,7 +46,7 @@ export default function Home() {
   return (
     <>
       <h1>ALL WORDS</h1>
-      <AllWords />
+      <AllWordsList />
     </>
   );
 }
