@@ -33,7 +33,12 @@ function AllWordsList() {
       <div>
         {words.map((word) => (
           <Link
-            key={word.id} href={`/${word.id}`}>
+            key={word.id}
+            href={`words/${word.id}`}
+            style={{
+              marginRight: '10px'
+            }}
+          >
             {word.word}
           </Link>
         ))}
