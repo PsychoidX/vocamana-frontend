@@ -45,7 +45,7 @@ export default function Home() {
     <>
       <h1>ALL WORDS</h1>
       <AllWordsList />
-      <Link href={"words/add"}>単語追加</Link>
+      <Link href={"words/new-word-form"}>単語追加</Link>
     </>
   );
 }

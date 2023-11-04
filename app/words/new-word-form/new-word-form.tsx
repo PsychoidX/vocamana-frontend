@@ -7,7 +7,7 @@ type FormValues = {
   memo: string
 }
 
-export default function WordAddForm() {
+export default function NewWordForm() {
   const { 
     register,
     handleSubmit,
