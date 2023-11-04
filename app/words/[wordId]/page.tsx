@@ -1,4 +1,4 @@
-import WordDetail from "./WordDetail";
+import WordDetail from "./word-detail";
 
 export default function WordDetailPage({ params }: {params: {wordId: string}}) {
   return (
