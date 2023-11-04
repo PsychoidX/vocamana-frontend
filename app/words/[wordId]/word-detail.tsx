@@ -21,7 +21,7 @@ async function getWordById(wordId: string): Promise<Word> {
     throw new Error(`Error: ${wordId} is invalid word id.`);
   }
 
-  const words = axios
+  const word = axios
     .get(`http://localhost:8081/words/${wordId}`)
     .then((res) => res.data)
     .catch((err) => {
@@ -33,7 +33,7 @@ async function getWordById(wordId: string): Promise<Word> {
       }
     });
 
-  return words;
+  return word;
 }
 
 async function getSentencesByWordId(wordId: string): Promise<Sentence[]> {
