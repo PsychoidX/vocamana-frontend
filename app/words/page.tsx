@@ -17,13 +17,6 @@ async function getAllWords() {
     return words;
 }
 
-type Word = {
-  id: number;
-  word: string;
-  memo: string;
-  user_id: number;
-}
-
 function AllWordsList() {
   const words: Word[] = use(getAllWords());
   if(words === null) {
