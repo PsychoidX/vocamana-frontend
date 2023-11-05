@@ -58,8 +58,8 @@ function AssociatedSentences(props: {wordId: string}) {
             style={{
               marginBottom: '10px'
             }}
+            dangerouslySetInnerHTML={{ __html: sentence.sentence }}
           >
-            {sentence.sentence}
           </div>
         ))}
       </div>
