@@ -1,5 +1,6 @@
 "use client"
 import axios from "axios";
+import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form"
 
 type SentenceFormValues = {
@@ -12,25 +13,29 @@ export default function NewWordForm() {
     handleSubmit,
   } = useForm<SentenceFormValues>();
 
-  return (
-    <form
-      onSubmit={handleSubmit(async (data) => {
-        try {
-          await axios.post(
-            "http://localhost:8081/sentences",
-            {
-              sentence: data.sentence,
-            }
-          );
-        } catch(err) {
-          console.log(`Error: ${err}`)
-        }
-      })}
-    >
-      <label htmlFor="sentence">Sentence:</label>
-      <textarea {...register("sentence", {required: true})} />
+  const router = useRouter();
 
-      <input type="submit" />
-    </form>
+  return (
+  <form
+    onSubmit={handleSubmit(async (data) => {
+      try {
+        await axios.post(
+          "http://localhost:8081/sentences",
+          {
+            sentence: data.sentence,
+          }
+        );
+        router.push("/words")
+      } catch(err) {
+        console.log(`Error: ${err}`)
+      }
+    })}
+  >
+
+  <label htmlFor="sentence">Sentence:</label>
+  <textarea {...register("sentence", {required: true})} />
+
+  <input type="submit" />
+</form>
   );
 }
