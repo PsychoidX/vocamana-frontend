@@ -1,5 +1,6 @@
 "use client"
 import axios from "axios";
+import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form"
 
 type WordFormValues = {
@@ -13,6 +14,8 @@ export default function NewWordForm() {
     handleSubmit,
   } = useForm<WordFormValues>();
 
+  const router = useRouter();
+
   return (
     <form
       onSubmit={handleSubmit(async (data) => {
@@ -24,6 +27,8 @@ export default function NewWordForm() {
               memo: data.memo,
             }
           );
+          router.push("/words")
+          router.refresh()
         } catch(err) {
           console.log(`Error: ${err}`)
         }
