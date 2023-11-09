@@ -1,23 +1,23 @@
 "use client"
 
-import { useState } from "react";
-import classNames from "classnames";
-
+import React, { useState } from "react";
+import Modal from "components/common/modal";
 export default function NotationModal() {
   const [isActive, setIsActive] = useState(false);
+  const toggleActive = () => {
+    setIsActive(!isActive)
+  }
 
   return (
     <>
-      <button onClick={() => setIsActive(!isActive)}>表記揺れ追加</button>
-      <div
-        className={classNames(
-          "modal",
-          "is-info",
-          { "is-active": isActive },
-        )}
+      <button onClick={() => toggleActive()}>表記揺れ追加</button>
+      <Modal
+        toggleIsActive={toggleActive}
+        isActive={isActive}
       >
-        Notation追加用モーダル
-      </div>
+        Notation追加モーダル
+      </Modal>
     </>
   );
 }
+
