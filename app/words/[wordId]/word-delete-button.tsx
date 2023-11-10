@@ -2,9 +2,11 @@
 
 import axios from "axios";
 import { useRouter } from "next/navigation"
+import { Button, DangerButton } from "components/common/button"
 
 export default function WordDeleteButton(props: {wordId: string}) {
   const router = useRouter()
+  const { wordId } = props;
 
   function handleDelete(wordId: string) {
     const numWordId = Number(wordId);
@@ -27,9 +29,9 @@ export default function WordDeleteButton(props: {wordId: string}) {
     });
   }
   
-  const { wordId } = props;
-  return <button
-            type="button"
-            onClick={ ()=> handleDelete(wordId)}
-          >削除</button>
+  return <DangerButton
+            onClick={ ()=> handleDelete(wordId) }
+          >
+            削除
+          </DangerButton>
 }
