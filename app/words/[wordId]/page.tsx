@@ -1,6 +1,6 @@
 import WordDetail from "./word-detail";
 import WordDeleteButton from "./word-delete-button";
-import NotationModalToggleButton from "./notation-modal";
+import { NotationModalToggleButton } from "@/components/notation/notation-modal";
 
 export default function WordDetailPage({ params }: {params: {wordId: string}}) {
   return (

@@ -36,7 +36,8 @@ function NewNotationForm(
   );
 }
 
-export default function NotationModalToggleButton(
+// クリックでNotationModalを表示させるボタン
+export function NotationModalToggleButton(
   props: {
     wordId: string,
     children: React.ReactNode,
