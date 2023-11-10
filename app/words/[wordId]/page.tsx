@@ -1,13 +1,13 @@
 import WordDetail from "./word-detail";
 import WordDeleteButton from "./word-delete-button";
-import NotationModal from "./notation-modal";
+import NotationModalToggleButton from "./notation-modal";
 
 export default function WordDetailPage({ params }: {params: {wordId: string}}) {
   return (
     <>
       <WordDetail wordId={params.wordId} />
       <WordDeleteButton wordId={params.wordId} />
-      <NotationModal />
+      <NotationModalToggleButton wordId={params.wordId}>表記揺れ追加</NotationModalToggleButton>
     </>
   );
 }
