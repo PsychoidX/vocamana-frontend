@@ -3,7 +3,7 @@
 import React, { ReactNode, useState } from "react";
 import { Button } from "@/components/common/button";
 import Modal from "@/components/common/modal";
-import NewNotationForm from "@/components/notation/new-notation-form"
+import NewNotationForm from "@/components/notations/new-notation-form"
 
 // クリックでNotationModalを表示させるボタン
 export function NotationModalToggleButton(

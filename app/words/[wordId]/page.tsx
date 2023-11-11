@@ -1,8 +1,8 @@
-import WordDeleteButton from "@/components/word/word-delete-button";
-import { NotationModalToggleButton } from "@/components/notation/notation-modal";
-import AllNotationsList from "@/components/notation/all-notations-list";
+import WordDeleteButton from "@/components/words/word-delete-button";
+import { NotationModalToggleButton } from "@/components/notations/notation-modal";
+import AllNotationsList from "@/components/notations/all-notations-list";
 import { use } from "react"
-import AssociatedSentencesList from "@/components/word/associated-sentences-list";
+import AssociatedSentencesList from "@/components/words/associated-sentences-list";
 import { getWordById } from "@/api/words";
 
 export default function WordDetailPage({ params }: {params: {wordId: string}}) {
