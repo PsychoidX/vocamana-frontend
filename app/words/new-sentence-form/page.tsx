@@ -1,5 +1,5 @@
-import NewSentenceForm from "./new-sentence-form"
+import NewSentenceForm from "@/components/sentences/new-sentence-form"
 
 export default function NewSentencePage() {
-  return <NewSentenceForm />
+  return <NewSentenceForm redirectTo="/words" />
 }

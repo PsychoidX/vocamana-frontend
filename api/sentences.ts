@@ -24,3 +24,18 @@ export async function getAssociatedSentences(wordId: string): Promise<Sentence[]
     return [];
   }
 }
+
+export async function addSentence(sentence: string): Promise<boolean> {
+  try {
+    await axios.post(
+      "http://localhost:8081/sentences",
+      {
+        sentence: sentence,
+      }
+    );
+    return true;
+  } catch(err) {
+    console.log(`Error: ${err}`)
+    return false;
+  }
+}
