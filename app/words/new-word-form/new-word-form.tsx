@@ -1,5 +1,5 @@
 "use client"
-import axios from "axios";
+import { addWord } from "@/api/words";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form"
 
@@ -9,31 +9,21 @@ type WordFormValues = {
 }
 
 export default function NewWordForm() {
-  const { 
-    register,
-    handleSubmit,
-  } = useForm<WordFormValues>();
-
+  const { register, handleSubmit } = useForm<WordFormValues>();
   const router = useRouter();
+  const onSubmit = async (data: WordFormValues) => {
+    const word = data.word;
+    const memo = data.memo;
+    const success = await addWord(word, memo);
+
+    if(success) {
+      router.push("/words")
+      router.refresh()
+    }
+  }
 
   return (
-    <form
-      onSubmit={handleSubmit(async (data) => {
-        try {
-          await axios.post(
-            "http://localhost:8081/words",
-            {
-              word: data.word,
-              memo: data.memo,
-            }
-          );
-          router.push("/words")
-          router.refresh()
-        } catch(err) {
-          console.log(`Error: ${err}`)
-        }
-      })}
-    >
+    <form onSubmit={handleSubmit(onSubmit)}>
       <label htmlFor="word">Word:</label>
       <input {...register("word", {required: true})} />
 
