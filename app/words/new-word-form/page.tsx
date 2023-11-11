@@ -1,5 +1,5 @@
-import NewWordForm from "./new-word-form";
+import NewWordForm from "@/components/words/new-word-form";
 
 export default function NewWordPage() {
-  return <NewWordForm />
+  return <NewWordForm redirectTo="/words" />
 }

@@ -9,7 +9,11 @@ type WordFormValues = {
   memo: string
 }
 
-export default function NewWordForm() {
+export default function NewWordForm(
+  props: {
+    redirectTo: string,
+}) {
+  const { redirectTo } = props;
   const { register, handleSubmit } = useForm<WordFormValues>();
   const router = useRouter();
   const onSubmit = async (data: WordFormValues) => {
@@ -18,7 +22,7 @@ export default function NewWordForm() {
     const success = await addWord(word, memo);
 
     if(success) {
-      router.push("/words")
+      router.push(redirectTo)
       router.refresh()
     }
   }
