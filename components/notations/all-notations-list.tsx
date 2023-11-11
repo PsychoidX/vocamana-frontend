@@ -1,5 +1,6 @@
 import { use } from "react"
 import { getAllNotations } from "@/api/notations";
+import { Tag } from "../common/tag";
 
 export default function AllNotationsList(prop: { wordId: string }) {
   const { wordId } = prop;
@@ -7,7 +8,11 @@ export default function AllNotationsList(prop: { wordId: string }) {
   return(
     <div>
       {notations.map((notation) => (
-        <span>{ notation.notation } </span>
+        <Tag
+          showDeleteButton={true}
+        >
+          { notation.notation }
+        </Tag>
       ))}
     </div>
   );
