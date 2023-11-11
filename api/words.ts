@@ -16,3 +16,22 @@ export async function addWord(word: string, memo: string): Promise<boolean> {
     return false;
   }
 }
+
+export async function deleteWord(wordId: string): Promise<boolean> {
+  if(isNaN(Number(wordId))) {
+    console.log(`Error: ${wordId} is invalid word id.`);
+    return false;
+  }
+
+  try {
+    await axios.delete(`http://localhost:8081/words/${wordId}`);
+    return true;
+  } catch(err: any) {
+    if(err.response) {
+      console.log(`Error: ${err.message} (${err.response.message})`);
+    } else {
+      console.log(`Error: No Response. ${err.message}`);
+    }
+    return false;
+  }
+}
