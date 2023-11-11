@@ -1,6 +1,25 @@
 'use server'
 import axios, { AxiosResponse } from "axios";
 
+export async function getAllWords(): Promise<Word[]> {
+  try {
+    const res: AxiosResponse<Word[]|null> = await axios.get("http://localhost:8081/words");
+    if(res.data === null) {
+      return [];
+    } else {
+      const words = res.data;
+      return words;
+    }
+  } catch(err: any) {
+    if(err.response) {
+      console.log(`Error: ${err.message} (${err.response.message})`);
+    } else {
+      console.log(`Error: No Response. ${err.message}`);
+    }
+    return [];
+  }  
+}
+
 export async function getWordById(wordId: string): Promise<Word|null> {
   if(isNaN(Number(wordId))) {
     console.log(`Error: ${wordId} is invalid word id.`);
