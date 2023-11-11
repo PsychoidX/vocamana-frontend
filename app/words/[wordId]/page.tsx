@@ -23,7 +23,7 @@ export default function WordDetailPage({ params }: {params: {wordId: string}}) {
           wordId={wordId}
           allWordNotationListComponent={<AllNotationsList wordId={wordId} />}  
         >
-            表記揺れ追加
+            表記揺れ管理
         </NotationModalOpenButton>
       </>
     )
