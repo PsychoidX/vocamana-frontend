@@ -30,7 +30,7 @@ export function NotationModalToggleButton(
         { allWordNotationListComponent }
         <NewNotationForm
           wordId={wordId}
-          setIsActice={setIsActive} 
+          onAfterSubmit={() => {setIsActive(false)} } 
         />
       </Modal>
     </>

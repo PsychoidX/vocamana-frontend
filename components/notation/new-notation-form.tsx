@@ -4,13 +4,12 @@ import { useForm } from "react-hook-form";
 type NotationFormValues = {
   notation: string
 }
-
 export default function NewNotationForm(
   props: {
     wordId: string,
-    setIsActice: (isActive: boolean)=>void,
+    onAfterSubmit: ()=>void,
   }) {
-  const { wordId, setIsActice } = props;
+  const { wordId, onAfterSubmit } = props;
   const { register, handleSubmit } = useForm<NotationFormValues>();
 
   const onSubmit = async (data: NotationFormValues) => {
@@ -18,7 +17,7 @@ export default function NewNotationForm(
     const success = await addNotation(wordId, notation);
 
     if(success) {
-      setIsActice(false);
+      onAfterSubmit();
     }
   }
 
