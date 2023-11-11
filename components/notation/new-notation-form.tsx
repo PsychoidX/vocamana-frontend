@@ -1,5 +1,3 @@
-"use client"
-
 import { addNotation } from "@/api/notations";
 import { useForm } from "react-hook-form";
 
