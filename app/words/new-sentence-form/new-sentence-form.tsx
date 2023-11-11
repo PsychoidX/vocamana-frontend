@@ -2,6 +2,7 @@
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form"
+import { SubmitButton } from "@/components/common/button";
 
 type SentenceFormValues = {
   sentence: string
@@ -35,7 +36,7 @@ export default function NewWordForm() {
   <label htmlFor="sentence">Sentence:</label>
   <textarea {...register("sentence", {required: true})} />
 
-  <input type="submit" />
+  <SubmitButton>送信</SubmitButton>
 </form>
   );
 }

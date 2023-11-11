@@ -2,6 +2,7 @@
 import { addWord } from "@/api/words";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form"
+import { SubmitButton } from "@/components/common/button";
 
 type WordFormValues = {
   word: string,
@@ -30,7 +31,7 @@ export default function NewWordForm() {
       <label htmlFor="memo">Memo:</label>
       <input {...register("memo")} />
 
-      <input type="submit" />
+      <SubmitButton>送信</SubmitButton>
     </form>
   );
 }

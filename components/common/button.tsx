@@ -2,13 +2,14 @@ import classNames from "classnames";
 import React, { useState } from "react";
 
 type ButtonProps = {
-  onClick: ()=>void,
+  onClick?: ()=>void,
   children: React.ReactNode,
-  additionalClassNames?: string;
+  additionalClassNames?: string,
+  type?: "submit"|"reset"|"button",
 }
 
 function BaseButton(props: ButtonProps) {
-  const { onClick, children, additionalClassNames } = props;
+  const { onClick, children, additionalClassNames, type } = props;
 
   // マウスホバー時に"is-outlined"クラスを付与
   const [isHovered, setIsHovered] = useState(false);
@@ -24,6 +25,7 @@ function BaseButton(props: ButtonProps) {
         additionalClassNames || "",
       )}
       onClick={onClick}
+      type={type}
     >
       {children}
     </button>
@@ -39,6 +41,21 @@ export function Button(props: ButtonProps) {
         "is-black",
       )}
       onClick={onClick}
+    >
+      {children}
+    </BaseButton>
+  )
+}
+
+export function SubmitButton(props: ButtonProps) {
+  const { children } = props;
+
+  return (
+    <BaseButton
+      additionalClassNames={classNames(
+        "is-black",
+      )}
+      type="submit"
     >
       {children}
     </BaseButton>
