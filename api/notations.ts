@@ -1,5 +1,6 @@
 'use server'
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
+
 
 export async function addNotation(wordId: string, notation: string): Promise<boolean> {
   try {
@@ -17,19 +18,25 @@ export async function addNotation(wordId: string, notation: string): Promise<boo
 }
 
 export async function getAllNotations(wordId: string): Promise<Notation[]> {
-  const notations = axios
-    .get(`http://localhost:8081/words/${wordId}/notations`)
-    .then((res) => {
-      return res.data === null ? [] : res.data;
-    })
-    .catch((err) => {
-      if(err.response) {
-        console.log(`Error: ${err.message} (${err.response.message})`);
-        return err.response;
-      } else {
-        throw new Error(`Error: No Response. ${err.message}`);
-      }
-    });
+  if(isNaN(Number(wordId))) {
+    console.log(`Error: ${wordId} is invalid word id.`);
+    return [];
+  }
 
-  return notations;
+  try {
+    const res: AxiosResponse<Notation[]> = await axios.get(`http://localhost:8081/words/${wordId}/notations`);
+    const notations: Notation[] = res.data;
+    if(notations === null) {
+      return [];
+    } else {
+      return notations;
+    }
+  } catch(err: any) {
+    if(err.response) {
+      console.log(`Error: ${err.message} (${err.response.message})`);
+    } else {
+      console.log(`Error: No Response. ${err.message}`);
+    }
+    return [];
+  }  
 }

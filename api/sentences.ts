@@ -1,5 +1,5 @@
 'use server'
-import axios, { AxiosResponse} from "axios";
+import axios, { AxiosResponse } from "axios";
 
 export async function getAssociatedSentences(wordId: string): Promise<Sentence[]> {
   if(isNaN(Number(wordId))) {
