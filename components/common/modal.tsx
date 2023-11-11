@@ -1,16 +1,16 @@
 import classNames from "classnames";
 
 // isActiveがtrueの時だけモーダルを表示
-// toggleIsActiveにisActiveの状態管理関数を渡すことで、
+// closeModalに、実行でisActiveをfalseにするコールバック関数を渡すことで
 // モーダル右上の「×」クリックにより非表示化可能
 export default function Modal(
   props: {
-    toggleIsActive: ()=>void,
+    closeModal: ()=>void,
     isActive: boolean,
     children: React.ReactNode,
   },
 ) {
-  const { toggleIsActive, isActive, children } = props;
+  const { closeModal, isActive, children } = props;
   return (
       <div
         className={classNames(
@@ -29,7 +29,7 @@ export default function Modal(
               "modal-close",
               "is-large",
             )}
-            onClick={toggleIsActive}
+            onClick={closeModal}
           ></button>
         </div>
       </div>

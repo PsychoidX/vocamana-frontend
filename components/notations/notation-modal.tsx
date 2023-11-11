@@ -6,7 +6,7 @@ import Modal from "@/components/common/modal";
 import NewNotationForm from "@/components/notations/new-notation-form"
 
 // クリックでNotationModalを表示させるボタン
-export function NotationModalToggleButton(
+export function NotationModalOpenButton(
   props: {
     wordId: string,
     // AllWordNotationはSCで、CC内ではレンダリングできないため
@@ -16,15 +16,12 @@ export function NotationModalToggleButton(
   }) {
   const { wordId, allWordNotationListComponent, children } = props;
   const [isActive, setIsActive] = useState(false);
-  const toggleActive = () => {
-    setIsActive(!isActive)
-  }
 
   return (
     <>
-      <Button onClick={() => toggleActive()}>{ children }</Button>
+      <Button onClick={() => setIsActive(true)}>{ children }</Button>
       <Modal
-        toggleIsActive={toggleActive}
+        closeModal={() => { setIsActive(false) }}
         isActive={isActive}
       >
         { allWordNotationListComponent }

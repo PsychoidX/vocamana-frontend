@@ -1,5 +1,5 @@
 import WordDeleteButton from "@/components/words/word-delete-button";
-import { NotationModalToggleButton } from "@/components/notations/notation-modal";
+import { NotationModalOpenButton } from "@/components/notations/notation-modal";
 import AllNotationsList from "@/components/notations/all-notations-list";
 import { use } from "react"
 import AssociatedSentencesList from "@/components/words/associated-sentences-list";
@@ -19,12 +19,12 @@ export default function WordDetailPage({ params }: {params: {wordId: string}}) {
           wordId={wordId}
           redirectTo="/words"
         />
-        <NotationModalToggleButton
+        <NotationModalOpenButton
           wordId={wordId}
           allWordNotationListComponent={<AllNotationsList wordId={wordId} />}  
         >
             表記揺れ追加
-        </NotationModalToggleButton>
+        </NotationModalOpenButton>
       </>
     )
   } else {
