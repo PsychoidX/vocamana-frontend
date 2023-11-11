@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState } from "react";
+import React, { ReactNode, useState } from "react";
 import { Button } from "@/components/common/button";
 import Modal from "@/components/common/modal";
 import NewNotationForm from "@/components/notation/new-notation-form"
@@ -9,9 +9,12 @@ import NewNotationForm from "@/components/notation/new-notation-form"
 export function NotationModalToggleButton(
   props: {
     wordId: string,
+    // AllWordNotationはSCで、CC内ではレンダリングできないため
+    // あらかじめSC内でレンダリングしておく
+    allWordNotationListComponent: ReactNode,
     children: React.ReactNode,
   }) {
-  const { wordId, children } = props;
+  const { wordId, allWordNotationListComponent, children } = props;
   const [isActive, setIsActive] = useState(false);
   const toggleActive = () => {
     setIsActive(!isActive)
@@ -24,6 +27,7 @@ export function NotationModalToggleButton(
         toggleIsActive={toggleActive}
         isActive={isActive}
       >
+        { allWordNotationListComponent }
         <NewNotationForm
           wordId={wordId}
           setIsActice={setIsActive} 

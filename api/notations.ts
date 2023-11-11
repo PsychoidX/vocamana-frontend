@@ -14,3 +14,21 @@ export async function addNotation(wordId: string, notation: string): Promise<boo
     return false;
   }
 }
+
+export async function getAllNotations(wordId: string): Promise<Notation[]> {
+  const notations = axios
+    .get(`http://localhost:8081/words/${wordId}/notations`)
+    .then((res) => {
+      return res.data === null ? [] : res.data;
+    })
+    .catch((err) => {
+      if(err.response) {
+        console.log(`Error: ${err.message} (${err.response.message})`);
+        return err.response;
+      } else {
+        throw new Error(`Error: No Response. ${err.message}`);
+      }
+    });
+
+  return notations;
+}

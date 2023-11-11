@@ -10,3 +10,9 @@ type Sentence = {
   sentence: string;
   user_id: number;
 }
+
+type Notation = {
+  id: number;
+  word_id: number;
+  notation: string; 
+}

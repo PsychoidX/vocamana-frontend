@@ -2,7 +2,7 @@
 
 import axios from "axios";
 import { useRouter } from "next/navigation"
-import { Button, DangerButton } from "components/common/button"
+import { Button, DangerButton } from "@/components/common/button"
 
 export default function WordDeleteButton(props: {wordId: string}) {
   const router = useRouter()

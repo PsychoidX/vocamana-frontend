@@ -1,5 +1,5 @@
 import Link from "next/link"
-import AllWordsList from "./all-word-list"
+import AllWordsList from "./all-words-list"
 
 export default function Home() {
   return (
