@@ -39,3 +39,22 @@ export async function getAllNotations(wordId: string): Promise<Notation[]> {
     return [];
   }  
 }
+
+export async function deleteNotation(notationId: string): Promise<boolean> {
+  if(isNaN(Number(notationId))) {
+    console.log(`Error: ${notationId} is invalid notation id.`);
+    return false;
+  }
+
+  try {
+    await axios.delete(`http://localhost:8081/notations/${notationId}`);
+    return true;
+  } catch(err: any) {
+    if(err.response) {
+      console.log(`Error: ${err.message} (${err.response.message})`);
+    } else {
+      console.log(`Error: No Response. ${err.message}`);
+    }
+    return false;
+  }
+}

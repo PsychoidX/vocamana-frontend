@@ -1,18 +1,15 @@
 import { use } from "react"
 import { getAllNotations } from "@/api/notations";
-import { Tag } from "@/components/common/tag";
+import NotationTagWithDeleteButton from "./notation-tag";
 
 export default function AllNotationsList(prop: { wordId: string }) {
   const { wordId } = prop;
   const notations: Notation[] = use(getAllNotations(wordId));
+
   return(
     <div>
       {notations.map((notation) => (
-        <Tag
-          showDeleteButton={true}
-        >
-          { notation.notation }
-        </Tag>
+        <NotationTagWithDeleteButton notation={notation} />
       ))}
     </div>
   );
