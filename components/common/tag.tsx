@@ -1,5 +1,4 @@
 import classNames from "classnames";
-import React, { useState } from "react";
 
 type TagProps = {
   showDeleteButton?: boolean,

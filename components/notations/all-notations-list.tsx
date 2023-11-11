@@ -1,6 +1,6 @@
 import { use } from "react"
 import { getAllNotations } from "@/api/notations";
-import { Tag } from "../common/tag";
+import { Tag } from "@/components/common/tag";
 
 export default function AllNotationsList(prop: { wordId: string }) {
   const { wordId } = prop;
