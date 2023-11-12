@@ -10,6 +10,16 @@ type TagProps = {
   href?: string,
 }
 
+// Bulmaでは<div class="tag">を<div class="tags">で囲うことで、
+// 中のタグを適度な隙間を空けて表示する
+export function TagsArea(props: { children: React.ReactNode }) {
+  const { children } = props;
+
+  return(
+    <div className="tags">{ children }</div>
+  )
+}
+
 export function Tag(props: TagProps) {
   const { showDeleteButton, onDeleteButtonClick, children, additionalClassNames, href } = props;
   
