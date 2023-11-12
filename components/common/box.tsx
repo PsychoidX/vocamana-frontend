@@ -20,3 +20,11 @@ export function Box(props: BoxProps) {
     return <div className="box">{ content }</div>
   }
 }
+
+export function GrayFlatBox(props: { content: string }) {
+  return (
+    <div className="notification">
+      { props.content }
+    </div>
+  )
+}
