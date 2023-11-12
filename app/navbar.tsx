@@ -2,7 +2,7 @@ import Link from "next/link"
 
 export function NavBar() {
   return (
-    <nav className="navbar">
+    <nav className="navbar is-fixed-top">
       <div className="navbar-brand">
         <Link
           className="navbar-item"
