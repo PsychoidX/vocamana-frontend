@@ -19,17 +19,11 @@ export function ButtonsArea(props: { children: React.ReactNode }) {
 function BaseButton(props: ButtonProps) {
   const { onClick, children, additionalClassNames, type } = props;
 
-  // マウスホバー時に"is-outlined"クラスを付与
-  const [isHovered, setIsHovered] = useState(false);
-
   return (
     <button
-      onMouseEnter={() => setIsHovered(true) }
-      onMouseLeave={() => setIsHovered(false) }
-
       className={classNames(
         "button",
-        { "is-outlined": !isHovered },
+        "is-outlined",
         additionalClassNames || "",
       )}
       onClick={onClick}
