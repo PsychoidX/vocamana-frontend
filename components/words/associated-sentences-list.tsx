@@ -1,6 +1,6 @@
 import { use } from "react"
 import { getAssociatedSentences } from "@/api/sentences";
-import { Card } from "@/components/common/card"
+import { Box } from "@/components/common/box"
 
 export default function AssociatedSentencesList(props: {wordId: string}) {
   const { wordId } = props;
@@ -11,7 +11,7 @@ export default function AssociatedSentencesList(props: {wordId: string}) {
     return (
       <div>
         {sentences.map((sentence) => (
-          <Card
+          <Box
             dangerouslySetContent={ true }
             content={ sentence.sentence }
           />
