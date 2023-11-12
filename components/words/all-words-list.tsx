@@ -1,6 +1,6 @@
 import { use } from "react"
-import Link from "next/link"
 import { getAllWords } from "@/api/words";
+import { TagsArea, LargeTag } from "@/components/common/tag"
 
 export default function AllWordsList() {
   const words: Word[] = use(getAllWords());
@@ -8,19 +8,16 @@ export default function AllWordsList() {
     return <p>登録済みの単語はありません</p>;
   } else {
     return(
-      <div>
+      <TagsArea>
         {words.map((word) => (
-          <Link
+          <LargeTag
             key={word.id}
             href={`words/${word.id}`}
-            style={{
-              marginRight: '10px'
-            }}
           >
             {word.word}
-          </Link>
+          </LargeTag>
         ))}
-      </div>
+      </TagsArea>
     );
   }
 }
