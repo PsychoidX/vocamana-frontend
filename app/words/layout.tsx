@@ -14,6 +14,7 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css" />
+        <link href="https://use.fontawesome.com/releases/v6.2.0/css/all.css" rel="stylesheet" />
       </head>
       <body>
         <NavBar />

@@ -76,3 +76,27 @@ export function DangerButton(props: ButtonProps) {
     </BaseButton>
   )
 }
+
+type IconButtonProps = {
+  onClick?: ()=>void,
+  additionalClassNames?: string,
+  iconClassNames: string,
+}
+
+export function IconButton(props: IconButtonProps) {
+  const { onClick, additionalClassNames, iconClassNames } = props;
+
+  return(
+    <button 
+      className="button is-white"
+      onClick={onClick}
+    >
+      <span className={classNames(
+          additionalClassNames || "",
+        )}
+      >
+        <i className={ iconClassNames }></i>
+      </span>
+    </button>
+  );
+}
