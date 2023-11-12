@@ -5,6 +5,7 @@ import { Button } from "@/components/common/button";
 import Modal from "@/components/common/modal";
 import NewNotationForm from "@/components/notations/new-notation-form"
 import NotationTagWithDeleteButton from "@/components/notations/notation-tag";
+import { TagsArea } from "@/components/common/tag";
 
 // NewNotationFormで追加されたNotationを一時的に表示するためのコンポーネント
 // Notationを追加する度にGETリクエストをし、AllNotationsListを更新するのは無駄なため
@@ -45,8 +46,13 @@ export function NotationModalOpenButton(
         closeModal={() => { setIsActive(false) }}
         isActive={isActive}
       >
-        { allWordNotationListComponent }
-        <CreatedNotationsList notations={createdNotations} />
+        <div className="mb-5">
+          <p className="has-text-weight-bold is-size-6">登録済みの表記揺れ</p>
+          <TagsArea>
+            { allWordNotationListComponent }
+            <CreatedNotationsList notations={createdNotations} />
+          </TagsArea>
+        </div>
         <NewNotationForm
           wordId={wordId}
           onAfterSubmit={onAfterSubmit} 

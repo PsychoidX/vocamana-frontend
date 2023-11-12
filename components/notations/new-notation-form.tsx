@@ -1,5 +1,6 @@
 import { addNotation } from "@/api/notations";
 import { useForm } from "react-hook-form";
+import { SubmitButton } from "@/components/common/button";
 
 type NotationFormValues = {
   notation: string
@@ -29,9 +30,13 @@ export default function NewNotationForm(
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} >
-      <label htmlFor="notation">新規表記揺れ:</label>
-      <input {...register("notation", {required: true})} />
-      <input type="submit" />
+      <div className="field">
+        <label className="label" htmlFor="notation">表記揺れ追加</label>
+        <div className="control">
+          <input className="input" {...register("notation", {required: true})} />
+        </div>
+      </div>
+      <SubmitButton>追加</SubmitButton>
     </form>
   );
 }
