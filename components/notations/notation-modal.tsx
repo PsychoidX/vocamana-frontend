@@ -26,7 +26,7 @@ function CreatedNotationsList(props: { notations: Notation[] }) {
 export function NotationModalOpenButton(
   props: {
     wordId: string,
-    // AllWordNotationはSCで、CC内ではレンダリングできないため
+    // AllWordNotationはデータフェッチを伴うSCで、CC内ではレンダリングできないため
     // あらかじめSC内でレンダリングしておく
     allWordNotationListComponent: ReactNode,
     children: React.ReactNode,
