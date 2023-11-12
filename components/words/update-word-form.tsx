@@ -32,11 +32,19 @@ export default function UpdateWordForm(
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <label htmlFor="word">Word:</label>
-      <input {...register("word", {required: true})} />
-
-      <label htmlFor="memo">Memo:</label>
-      <input {...register("memo")} />
+      <div className="field">
+        <label htmlFor="word" className="label">単語</label>
+        <div className="control">
+          <input className="input" {...register("word", {required: true})} />
+        </div>
+      </div>
+      
+      <div className="field">
+        <label htmlFor="memo" className="label">メモ</label>
+        <div className="control">
+          <textarea className="textarea" {...register("memo")} />
+        </div>
+      </div>
 
       <SubmitButton>更新</SubmitButton>
     </form>
