@@ -27,6 +27,7 @@ export default function EditableWordDetail(props: { word: Word }) {
       <UpdateWordForm
         word={ latestWord }
         onAfterSubmit={onAfterSubmit}
+        onClickCancel={ () => { setIsEditing(false) }}
       />
     );
   } else {

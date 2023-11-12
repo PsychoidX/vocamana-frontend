@@ -1,6 +1,6 @@
 import { updateWord } from "@/api/words";
 import { useForm } from "react-hook-form"
-import { SubmitButton } from "@/components/common/button";
+import { ButtonsArea, Button, SubmitButton } from "@/components/common/button";
 
 type WordFormValues = {
   word: string
@@ -11,8 +11,9 @@ export default function UpdateWordForm(
   props: {
     word: Word, // 更新対象のword
     onAfterSubmit: (word: Word)=>void, // 更新完了時に実行
+    onClickCancel: ()=>void, // キャンセルボタン押下時に実行
 }) {
-  const { word, onAfterSubmit } = props;
+  const { word, onAfterSubmit, onClickCancel } = props;
   const { register, handleSubmit } = useForm<WordFormValues>({
     defaultValues: {
       word: word.word,
@@ -46,7 +47,12 @@ export default function UpdateWordForm(
         </div>
       </div>
 
-      <SubmitButton>更新</SubmitButton>
+      <ButtonsArea>
+        <SubmitButton>更新</SubmitButton>
+        <Button
+          onClick={ onClickCancel }
+        >キャンセル</Button>
+      </ButtonsArea>
     </form>
   );
 }
