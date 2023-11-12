@@ -8,6 +8,14 @@ type ButtonProps = {
   type?: "submit"|"reset"|"button",
 }
 
+export function ButtonsArea(props: { children: React.ReactNode }) {
+  return(
+    <div className="buttons">
+      { props.children }
+    </div>
+  );
+}
+
 function BaseButton(props: ButtonProps) {
   const { onClick, children, additionalClassNames, type } = props;
 
