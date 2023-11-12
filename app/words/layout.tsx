@@ -17,8 +17,10 @@ export default function RootLayout({
       </head>
       <body>
         <NavBar />
-        <div className="content">
-          {children}
+        <div className="columns">
+          <div className="column is-10 is-offset-1 content">
+            {children}
+          </div>
         </div>
       </body>
     </html>
