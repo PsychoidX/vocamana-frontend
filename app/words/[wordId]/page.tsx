@@ -4,16 +4,22 @@ import AllNotationsList from "@/components/notations/all-notations-list";
 import { use } from "react"
 import AssociatedSentencesList from "@/components/words/associated-sentences-list";
 import { getWordById } from "@/api/words";
+import { GrayFlatBox } from "@/components/common/box";
 
 export default function WordDetailPage({ params }: {params: {wordId: string}}) {
   const { wordId } = params;
   const word = use(getWordById(wordId));
 
+  let wordMemoBox: React.ReactNode|undefined;
+  if(word && word.memo.length !== 0) {
+    wordMemoBox = <GrayFlatBox content={ word.memo } />
+  }
+
   if(word) {
     return(
       <>
         <h2>{ word.word }</h2>
-        <p>{ word.memo }</p>
+        { wordMemoBox }
         <AssociatedSentencesList wordId={wordId} />
         <WordDeleteButton
           wordId={wordId}
