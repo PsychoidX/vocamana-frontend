@@ -7,17 +7,18 @@ type NotationFormValues = {
 export default function NewNotationForm(
   props: {
     wordId: string,
-    onAfterSubmit: ()=>void,
+    onAfterSubmit: (notation: Notation)=>void,
   }) {
   const { wordId, onAfterSubmit } = props;
   const { register, handleSubmit } = useForm<NotationFormValues>();
 
   const onSubmit = async (data: NotationFormValues) => {
     const notation = data.notation;
-    const success = await addNotation(wordId, notation);
+    const createdNotation = await addNotation(wordId, notation);
 
-    if(success) {
-      onAfterSubmit();
+    if(createdNotation) {
+      // 作成に成功した場合、新規作成したNotationを引数に取るコールバック関数を実行
+      onAfterSubmit(createdNotation);
     }
   }
 

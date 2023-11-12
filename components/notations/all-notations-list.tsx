@@ -7,10 +7,10 @@ export default function AllNotationsList(prop: { wordId: string }) {
   const notations: Notation[] = use(getAllNotations(wordId));
 
   return(
-    <div>
+    <>
       {notations.map((notation) => (
         <NotationTagWithDeleteButton notation={notation} />
       ))}
-    </div>
+    </>
   );
 }

@@ -1,18 +1,21 @@
 'use server'
 import axios, { AxiosResponse } from "axios";
 
-export async function addNotation(wordId: string, notation: string): Promise<boolean> {
+export async function addNotation(wordId: string, notation: string): Promise<Notation|null> {
   try {
-    await axios.post(
+    const res: AxiosResponse<Notation> = await axios.post(
       `http://localhost:8081/words/${wordId}/notations`,
       {
         notation: notation,
       }
     );
-    return true;
+    const createdNotation: Notation = res.data;
+
+    // POSTに成功したら、新規作成されたNotationを返す
+    return createdNotation;
   } catch(err) {
     console.log(`Error: ${err}`)
-    return false;
+    return null;
   }
 }
 
