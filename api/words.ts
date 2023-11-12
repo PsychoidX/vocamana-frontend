@@ -56,6 +56,23 @@ export async function addWord(word: string, memo: string): Promise<boolean> {
   }
 }
 
+export async function updateWord(wordId: string, word: string, memo: string): Promise<Word|null> {
+  try {
+    const res: AxiosResponse<Word> = await axios.put(
+      `http://localhost:8081/words/${wordId}`,
+      {
+        word: word,
+        memo: memo,
+      }
+    );
+    
+    return res.data;
+  } catch(err) {
+    console.log(`Error: ${err}`)
+    return null;
+  }
+}
+
 export async function deleteWord(wordId: string): Promise<boolean> {
   if(isNaN(Number(wordId))) {
     console.log(`Error: ${wordId} is invalid word id.`);
