@@ -1,5 +1,6 @@
 import { use } from "react"
 import { getAssociatedSentences } from "@/api/sentences";
+import { Card } from "@/components/common/card"
 
 export default function AssociatedSentencesList(props: {wordId: string}) {
   const { wordId } = props;
@@ -10,13 +11,10 @@ export default function AssociatedSentencesList(props: {wordId: string}) {
     return (
       <div>
         {sentences.map((sentence) => (
-          <div
-            style={{
-              marginBottom: '10px'
-            }}
-            dangerouslySetInnerHTML={{ __html: sentence.sentence }}
-          >
-          </div>
+          <Card
+            dangerouslySetContent={ true }
+            content={ sentence.sentence }
+          />
         ))}
       </div>
     )
