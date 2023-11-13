@@ -16,7 +16,7 @@ export default function WordDetailPage({ params }: {params: {wordId: string}}) {
         <EditableWordDetail word={ word } />
         <AssociatedSentencesList wordId={wordId} />
         <WordDeleteButton
-          wordId={wordId}
+          word={ word }
           redirectTo="/words"
         />
         <NotationModalOpenButton

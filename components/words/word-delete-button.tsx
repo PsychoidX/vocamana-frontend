@@ -7,11 +7,11 @@ import { ConfirmDeleteModalOpenButton } from "../common/modal";
 // 削除後にredirectToで指定さたパスに遷移
 export default function WordDeleteButton(
   props: {
-    wordId: string,
+    word: Word,
     redirectTo: string,
   }
 ) {
-  const { wordId, redirectTo } = props;
+  const { word, redirectTo } = props;
   const router = useRouter()
 
   async function handleDelete(wordId: string) {
@@ -29,8 +29,8 @@ export default function WordDeleteButton(
     //   削除
     // </DangerButton>
     <ConfirmDeleteModalOpenButton
-      confirmMessage={`id=${wordId}の単語を削除します。よろしいですか？`}
-      onClickDelete={ ()=>{ handleDelete(wordId) }}
+      confirmMessage={`「${word.word}」を削除します。よろしいですか？`}
+      onClickDelete={ ()=>{ handleDelete(String(word.id)) }}
     >削除</ConfirmDeleteModalOpenButton>
   )
 }
