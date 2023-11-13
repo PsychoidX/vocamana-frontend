@@ -10,15 +10,14 @@ import { ButtonsArea, DangerButton, Button } from "./button";
 export function Modal(
   props: {
     onClickCloseButton?: ()=>void,
-    hasCloseButton?: boolean,
     isActive: boolean,
     children: React.ReactNode,
   },
 ) {
-  const { onClickCloseButton, hasCloseButton, isActive, children } = props;
+  const { onClickCloseButton, isActive, children } = props;
   
   let closeModalButton: React.ReactNode = <></>;
-  if(hasCloseButton) {
+  if(onClickCloseButton) {
     closeModalButton = (
       <button
         className={classNames(

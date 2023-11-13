@@ -43,7 +43,6 @@ export function NotationModalOpenButton(
     <>
       <Button onClick={() => setIsActive(true)}>{ children }</Button>
       <Modal
-        hasCloseButton={ true }
         onClickCloseButton={() => { setIsActive(false) }}
         isActive={isActive}
       >
