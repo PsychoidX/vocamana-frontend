@@ -10,11 +10,12 @@ import { ButtonsArea, DangerButton, Button } from "./button";
 export function Modal(
   props: {
     onClickCloseButton?: ()=>void,
+    onClickBackground?: ()=>void,
     isActive: boolean,
     children: React.ReactNode,
   },
 ) {
-  const { onClickCloseButton, isActive, children } = props;
+  const { onClickCloseButton, onClickBackground, isActive, children } = props;
   
   let closeModalButton: React.ReactNode = <></>;
   if(onClickCloseButton) {
@@ -37,7 +38,10 @@ export function Modal(
           { "is-active": isActive },
         )}
       >
-        <div className="modal-background"></div>
+        <div
+          className="modal-background"
+          onClick={ onClickBackground }
+        ></div>
         <div className="modal-content">
           <div className="box">
             {children}
@@ -62,6 +66,7 @@ function ConfirmDeleteModal(
   return(
     <Modal
       isActive={ isActive }
+      onClickBackground={ onClickCancel }
     >
       <p>{ message }</p>
       <ButtonsArea>
