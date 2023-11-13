@@ -1,16 +1,35 @@
+'use client'
 import classNames from "classnames";
+import React, { useState } from "react";
+import { ButtonsArea, DangerButton, Button } from "./button";
 
-// isActiveがtrueの時だけモーダルを表示
+// isActiveがtrueの間だけモーダルを表示
+// hasCloseButton==trueの場合、右上に「×」ボタンを表示
 // closeModalに、実行でisActiveをfalseにするコールバック関数を渡すことで
 // モーダル右上の「×」クリックにより非表示化可能
-export default function Modal(
+export function Modal(
   props: {
-    closeModal: ()=>void,
+    onClickCloseButton?: ()=>void,
+    hasCloseButton?: boolean,
     isActive: boolean,
     children: React.ReactNode,
   },
 ) {
-  const { closeModal, isActive, children } = props;
+  const { onClickCloseButton, hasCloseButton, isActive, children } = props;
+  
+  let closeModalButton: React.ReactNode = <></>;
+  if(hasCloseButton) {
+    closeModalButton = (
+      <button
+        className={classNames(
+          "modal-close",
+          "is-large",
+        )}
+        onClick={onClickCloseButton}
+      ></button>
+    )
+  }
+
   return (
       <div
         className={classNames(
@@ -24,13 +43,7 @@ export default function Modal(
           <div className="box">
             {children}
           </div>
-          <button
-            className={classNames(
-              "modal-close",
-              "is-large",
-            )}
-            onClick={closeModal}
-          ></button>
+          { closeModalButton }
         </div>
       </div>
   );

@@ -2,7 +2,7 @@
 
 import React, { ReactNode, useState } from "react";
 import { Button } from "@/components/common/button";
-import Modal from "@/components/common/modal";
+import { Modal } from "@/components/common/modal";
 import NewNotationForm from "@/components/notations/new-notation-form"
 import NotationTagWithDeleteButton from "@/components/notations/notation-tag";
 import { TagsArea } from "@/components/common/tag";
@@ -43,7 +43,8 @@ export function NotationModalOpenButton(
     <>
       <Button onClick={() => setIsActive(true)}>{ children }</Button>
       <Modal
-        closeModal={() => { setIsActive(false) }}
+        hasCloseButton={ true }
+        onClickCloseButton={() => { setIsActive(false) }}
         isActive={isActive}
       >
         <div className="mb-5">
