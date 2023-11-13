@@ -1,6 +1,5 @@
 'use client'
 import { useRouter } from "next/navigation"
-import { DangerButton } from "@/components/common/button"
 import { deleteWord } from "@/api/words";
 import { ConfirmDeleteModalOpenButton } from "../common/modal";
 
