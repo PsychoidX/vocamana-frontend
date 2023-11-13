@@ -23,11 +23,6 @@ export default function WordDeleteButton(
   }
   
   return (
-    // <DangerButton
-    //   onClick={ ()=> handleDelete(wordId) }
-    // >
-    //   削除
-    // </DangerButton>
     <ConfirmDeleteModalOpenButton
       confirmMessage={`「${word.word}」を削除します。よろしいですか？`}
       onClickDelete={ ()=>{ handleDelete(String(word.id)) }}
