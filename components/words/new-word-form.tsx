@@ -1,5 +1,5 @@
 "use client"
-import { addWord } from "@/api/words";
+import { addMultipleWords } from "@/api/words";
 import { useRouter } from "next/navigation";
 import { useForm, useFieldArray } from "react-hook-form"
 import { Button, SubmitButton } from "@/components/common/button";
@@ -30,17 +30,25 @@ export default function NewWordForm(
   })
 
   const onSubmit = async (data: FormData) => {
+    const wordReqs: WordCreationRequest[] = [];
+
     for(const wordForm of data.wordForms) {
       const word = wordForm.word;
       const memo = wordForm.memo;
-      await addWord(word, memo);
+      if(word.length > 0) {
+        wordReqs.push({
+          word: word,
+          memo: memo,
+        })
+      }
     }
-    // const success = await addWord(word, memo);
+    console.log(wordReqs);
+    const success = await addMultipleWords(wordReqs);
 
-    // if(success) {
-    //   router.push(redirectTo)
-    //   router.refresh()
-    // }
+    if(success) {
+      router.push(redirectTo)
+      router.refresh()
+    }
   }
 
   return (
