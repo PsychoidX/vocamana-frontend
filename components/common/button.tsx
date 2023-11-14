@@ -27,7 +27,7 @@ function BaseButton(props: ButtonProps) {
         additionalClassNames || "",
       )}
       onClick={onClick}
-      type={type}
+      type={ type || "button" }
     >
       {children}
     </button>
@@ -50,7 +50,7 @@ export function Button(props: ButtonProps) {
 }
 
 export function SubmitButton(props: ButtonProps) {
-  const { children } = props;
+  const { type, children } = props;
 
   return (
     <BaseButton
