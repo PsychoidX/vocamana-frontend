@@ -5,6 +5,12 @@ type Word = {
   user_id: number;
 }
 
+type WordCreationRequest = {
+  word: string;
+  memo: string;
+}
+
+
 type Sentence = {
   id: number;
   sentence: string;
