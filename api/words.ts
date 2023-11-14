@@ -56,6 +56,22 @@ export async function addWord(word: string, memo: string): Promise<boolean> {
   }
 }
 
+export async function addMultipleWords(wordReqs: WordCreationRequest[]): Promise<boolean> {
+  try {
+    // TODO: wordReqsの間に空要素がある場合、送信しないようにする
+    await axios.post(
+      "http://localhost:8081/words/multiple",
+      {
+        words: wordReqs
+      }
+    );
+    return true;
+  } catch(err) {
+    console.log(`Error: ${err}`)
+    return false;
+  }
+}
+
 export async function updateWord(wordId: string, word: string, memo: string): Promise<Word|null> {
   try {
     const res: AxiosResponse<Word> = await axios.put(
