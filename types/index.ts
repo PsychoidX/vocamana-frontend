@@ -10,11 +10,14 @@ type WordCreationRequest = {
   memo: string;
 }
 
-
 type Sentence = {
   id: number;
   sentence: string;
   user_id: number;
+}
+
+type SentenceCreationRequest = {
+  sentence: string,
 }
 
 type Notation = {
