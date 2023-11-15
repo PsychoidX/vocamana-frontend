@@ -39,3 +39,19 @@ export async function addSentence(sentence: string): Promise<boolean> {
     return false;
   }
 }
+
+export async function addMultipleSentences(sentenceReqs: SentenceCreationRequest[]): Promise<boolean> {
+  try {
+    // TODO: sentenceReqsの間に空要素がある場合、送信しないようにする
+    await axios.post(
+      "http://localhost:8081/sentences/multiple",
+      {
+        sentences: sentenceReqs,
+      }
+    );
+    return true;
+  } catch(err) {
+    console.log(`Error: ${err}`)
+    return false;
+  }
+}
