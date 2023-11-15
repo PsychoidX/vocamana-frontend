@@ -2,7 +2,7 @@ import WordDeleteButton from "@/components/words/word-delete-button";
 import { NotationModalOpenButton } from "@/components/notations/notation-modal";
 import AllNotationsList from "@/components/notations/all-notations-list";
 import { use } from "react"
-import AssociatedSentencesList from "@/components/words/associated-sentences-list";
+import AssociatedSentencesList from "@/components/sentences/associated-sentences-list";
 import { getWordById } from "@/api/words";
 import EditableWordDetail from "@/components/words/editable-word-detail";
 
