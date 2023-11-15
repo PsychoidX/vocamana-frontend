@@ -2,7 +2,7 @@
 import { addMultipleWords } from "@/api/words";
 import { useRouter } from "next/navigation";
 import { useForm, useFieldArray } from "react-hook-form"
-import { Button, SubmitButton } from "@/components/common/button";
+import { Button, ButtonsArea, SubmitButton } from "@/components/common/button";
 
 type WordsForm = {
   wordInputs: {
@@ -53,21 +53,35 @@ export default function NewWordForm(
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       {fields.map((item, index) => (
-        <div key={item.id}>
-          <label htmlFor="word">Word:</label>
-          <input {...register(`wordInputs.${index}.word` as const)} />
-          <label htmlFor="memo">Memo:</label>
-          <input {...register(`wordInputs.${index}.memo` as const)} />
+        <div className="block" key={item.id}>
+          <div className="field">
+            <label htmlFor="word" className="label">単語</label>
+            <div className="control">
+              <input className="input" {...register(`wordInputs.${index}.word` as const)} />
+            </div>
+          </div>
+          <div className="field">
+            <label htmlFor="memo" className="label">メモ</label>
+            <div className="control">
+              <textarea className="textarea" {...register(`wordInputs.${index}.memo` as const)} />
+            </div>
+          </div>
         </div>
       ))}
-      <Button
-        onClick={ () => {
-          append({
-            word: "",
-            memo: "",
-          })
-        }}>フォーム追加</Button>
-      <SubmitButton>送信</SubmitButton>
+
+      <ButtonsArea
+        additionalClassNames="mb-6"
+        isCentered={ true }
+      >
+        <Button
+          onClick={ () => {
+            append({
+              word: "",
+              memo: "",
+            })
+          }}>フォーム追加</Button>
+        <SubmitButton>送信</SubmitButton>
+      </ButtonsArea>
     </form>
   );
 }
