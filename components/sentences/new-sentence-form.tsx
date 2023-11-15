@@ -1,6 +1,6 @@
 'use client'
 import { useFieldArray, useForm } from "react-hook-form"
-import { SubmitButton, Button } from "@/components/common/button";
+import { SubmitButton, Button, ButtonsArea } from "@/components/common/button";
 import { addMultipleSentences } from "@/api/sentences";
 import { useRouter } from "next/navigation";
 
@@ -50,19 +50,29 @@ export default function NewSentenceForms(
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       {fields.map((item, index) => (
-        <div key={item.id}>
-          <label htmlFor="sentence">Sentence:</label>
-          <input {...register(
-            `sentenceInputs.${index}.sentence` as const)} />
+        <div className="block" key={item.id}>
+          <div className="field">
+            <label className="label" htmlFor="sentence">文章</label>
+            <div className="control">
+              <textarea className="textarea" {...register(
+              `sentenceInputs.${index}.sentence` as const)} />
+            </div>
+          </div>
         </div>
       ))}
-      <Button
-        onClick={ () => {
-          append({
-            sentence: "",
-          })
-        }}>フォーム追加</Button>
-      <SubmitButton>送信</SubmitButton>
+
+      <ButtonsArea
+        additionalClassNames="mb-6"
+        isCentered={ true }
+      >
+        <Button
+          onClick={ () => {
+            append({
+              sentence: "",
+            })
+          }}>フォーム追加</Button>
+        <SubmitButton>送信</SubmitButton>
+      </ButtonsArea>
     </form>
   );
 }
