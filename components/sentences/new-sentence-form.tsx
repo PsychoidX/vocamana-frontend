@@ -53,8 +53,7 @@ export default function NewSentenceForms(
         <div key={item.id}>
           <label htmlFor="sentence">Sentence:</label>
           <input {...register(
-            `sentenceInputs.${index}.sentence` as const,
-            {required: true})} />
+            `sentenceInputs.${index}.sentence` as const)} />
         </div>
       ))}
       <Button
