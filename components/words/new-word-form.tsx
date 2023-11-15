@@ -4,8 +4,8 @@ import { useRouter } from "next/navigation";
 import { useForm, useFieldArray } from "react-hook-form"
 import { Button, SubmitButton } from "@/components/common/button";
 
-type FormData = {
-  wordForms: {
+type WordsForm = {
+  wordInputs: {
     word: string;
     memo: string;
   }[];
@@ -17,24 +17,24 @@ export default function NewWordForm(
 }) {
   const { redirectTo } = props;
   const router = useRouter();
-  const { control, register, handleSubmit } = useForm<FormData>({
+  const { control, register, handleSubmit } = useForm<WordsForm>({
     defaultValues: {
-      wordForms: [{
+      wordInputs: [{
         word: "",
         memo: "",
       }]
   }});
   const { fields, append } = useFieldArray({
     control,
-    name: 'wordForms'
+    name: 'wordInputs'
   })
 
-  const onSubmit = async (data: FormData) => {
+  const onSubmit = async (data: WordsForm) => {
     const wordReqs: WordCreationRequest[] = [];
 
-    for(const wordForm of data.wordForms) {
-      const word = wordForm.word;
-      const memo = wordForm.memo;
+    for(const wordInput of data.wordInputs) {
+      const word = wordInput.word;
+      const memo = wordInput.memo;
       if(word.length > 0) {
         wordReqs.push({
           word: word,
@@ -42,7 +42,6 @@ export default function NewWordForm(
         })
       }
     }
-    console.log(wordReqs);
     const success = await addMultipleWords(wordReqs);
 
     if(success) {
@@ -56,9 +55,9 @@ export default function NewWordForm(
       {fields.map((item, index) => (
         <div key={item.id}>
           <label htmlFor="word">Word:</label>
-          <input {...register(`wordForms.${index}.word` as const)} />
+          <input {...register(`wordInputs.${index}.word` as const)} />
           <label htmlFor="memo">Memo:</label>
-          <input {...register(`wordForms.${index}.memo` as const)} />
+          <input {...register(`wordInputs.${index}.memo` as const)} />
         </div>
       ))}
       <Button
