@@ -1,5 +1,4 @@
 import classNames from "classnames";
-import React, { useState } from "react";
 
 type ButtonProps = {
   onClick?: ()=>void,
@@ -8,9 +7,22 @@ type ButtonProps = {
   type?: "submit"|"reset"|"button",
 }
 
-export function ButtonsArea(props: { children: React.ReactNode }) {
+export function ButtonsArea(
+  props: {
+    additionalClassNames?: string,
+    isCentered?: boolean,
+    children: React.ReactNode,
+}) {
+  const { additionalClassNames, isCentered } = props;
+
   return(
-    <div className="buttons">
+    <div 
+      className={classNames(
+        "buttons",
+        { "is-centered": isCentered },
+        additionalClassNames || ""
+      )}
+    >
       { props.children }
     </div>
   );
