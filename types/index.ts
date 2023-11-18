@@ -13,6 +13,7 @@ type WordCreationRequest = {
 type Sentence = {
   id: number;
   sentence: string;
+  sentence_with_link: string;
   user_id: number;
 }
 

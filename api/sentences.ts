@@ -55,3 +55,19 @@ export async function addMultipleSentences(sentenceReqs: SentenceCreationRequest
     return false;
   }
 }
+
+export async function updateSentence(sentenceId: string, sentence: string): Promise<Sentence|null> {
+  try {
+    const res: AxiosResponse<Sentence> = await axios.put(
+      `http://localhost:8081/sentences/${sentenceId}`,
+      {
+        sentence: sentence,
+      }
+    );
+    
+    return res.data;
+  } catch(err) {
+    console.log(`Error: ${err}`)
+    return null;
+  }
+}
