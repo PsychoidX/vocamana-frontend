@@ -37,7 +37,7 @@ export default function EditableSentenceBox(props: {
     return(
       <Box
         dangerouslySetContent={ true }
-        content={ sentence.sentence_with_link }
+        content={ latestSentence.sentence_with_link }
         afterContentNode={ afterContentNode }
       />
     );

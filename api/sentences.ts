@@ -59,7 +59,7 @@ export async function addMultipleSentences(sentenceReqs: SentenceCreationRequest
 export async function updateSentence(sentenceId: string, sentence: string): Promise<Sentence|null> {
   try {
     const res: AxiosResponse<Sentence> = await axios.put(
-      `http://localhost:8081/sentences/${sentenceId}`,
+      `http://localhost:8081/sentences/${sentenceId}?with-link=true`,
       {
         sentence: sentence,
       }
