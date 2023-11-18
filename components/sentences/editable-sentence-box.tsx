@@ -17,8 +17,9 @@ export default function EditableSentenceBox(props: {
   }
 
   const afterContentNode = (
-    <ButtonsArea>
+    <ButtonsArea additionalClassNames="mt-3">
       <IconButton
+        additionalClassNames="has-text-grey"
         iconClassNames="fa-solid fa-pen"
         onClick={ () => { setIsEditing(true) }}
       />
