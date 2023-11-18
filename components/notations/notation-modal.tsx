@@ -6,6 +6,7 @@ import { Modal } from "@/components/common/modal";
 import NewNotationForm from "@/components/notations/new-notation-form"
 import NotationTagWithDeleteButton from "@/components/notations/notation-tag";
 import { TagsArea } from "@/components/common/tag";
+import { useRouter } from "next/navigation";
 
 // NewNotationFormで追加されたNotationを一時的に表示するためのコンポーネント
 // Notationを追加する度にGETリクエストをし、AllNotationsListを更新するのは無駄なため
@@ -34,16 +35,25 @@ export function NotationModalOpenButton(
   const { wordId, allWordNotationListComponent, children } = props;
   const [isActive, setIsActive] = useState(false);
   const [createdNotations, setCreatedNotations] = useState<Notation[]>([]);
+  const router = useRouter();
 
   function onAfterSubmit(notation: Notation): void {
     setCreatedNotations([...createdNotations, notation])
+  }
+
+  function onClickCloseButton() {
+    // Notationが追加・削除された場合、
+    // 変更をリンク作成に再反映させるため、画面を再読み込み
+    router.push(`/words/${wordId}`);
+    router.refresh();
+    setIsActive(false)
   }
 
   return (
     <>
       <Button onClick={() => setIsActive(true)}>{ children }</Button>
       <Modal
-        onClickCloseButton={() => { setIsActive(false) }}
+        onClickCloseButton={onClickCloseButton}
         isActive={isActive}
       >
         <div className="mb-5">
