@@ -5,6 +5,7 @@ import { use } from "react"
 import AssociatedSentencesList from "@/components/sentences/associated-sentences-list";
 import { getWordById } from "@/api/words";
 import EditableWordDetail from "@/components/words/editable-word-detail";
+import { ButtonsArea } from "@/components/common/button";
 
 export default function WordDetailPage({ params }: {params: {wordId: string}}) {
   const { wordId } = params;
@@ -15,16 +16,21 @@ export default function WordDetailPage({ params }: {params: {wordId: string}}) {
       <>
         <EditableWordDetail word={ word } />
         <AssociatedSentencesList wordId={wordId} />
-        <WordDeleteButton
-          word={ word }
-          redirectTo="/words"
-        />
-        <NotationModalOpenButton
-          wordId={wordId}
-          allWordNotationListComponent={<AllNotationsList wordId={wordId} />}  
+        <ButtonsArea
+          additionalClassNames="mt-6 mb-6"
+          isCentered={ true }
         >
-            表記揺れ管理
-        </NotationModalOpenButton>
+          <WordDeleteButton
+            word={ word }
+            redirectTo="/words"
+          />
+          <NotationModalOpenButton
+            wordId={wordId}
+            allWordNotationListComponent={<AllNotationsList wordId={wordId} />}  
+          >
+              表記揺れ管理
+          </NotationModalOpenButton>
+        </ButtonsArea>
       </>
     )
   } else {
