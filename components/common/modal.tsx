@@ -1,7 +1,7 @@
 'use client'
 import classNames from "classnames";
 import React, { useState } from "react";
-import { ButtonsArea, DangerButton, Button } from "./button";
+import { ButtonsArea, DangerButton, Button, IconButton } from "./button";
 
 // isActiveがtrueの間だけモーダルを表示
 // hasCloseButton==trueの場合、右上に「×」ボタンを表示
@@ -110,6 +110,51 @@ export function ConfirmDeleteModalOpenButton(
       >
         { children }
       </DangerButton>
+      <ConfirmDeleteModal
+        isActive={ showModal }
+        message={ confirmMessage }
+        onClickDelete={ handleDelete }
+        onClickCancel={ handleCancel }
+      />
+    </>
+  )
+}
+
+// クリックでConfirmDeleteButtonを表示させるボタン
+export function ConfirmDeleteModalOpenIconButton(
+  props: {
+    confirmMessage: string, // 例: 「xxxを本当に削除しますか？」
+    onClickDelete: ()=>void, // 表示されるモーダルの「削除」押下時の処理
+    onClickCancel?: ()=>void, // 表示されるモーダルの「キャンセル」押下時の処理
+    additionalClassNames?: string,
+    iconClassNames: string,
+  }) {
+  const { confirmMessage, onClickDelete, onClickCancel, additionalClassNames, iconClassNames } = props;
+  const [showModal, setShowModal] = useState(false);
+
+  // 削除・キャンセルいずれかが押下されたら
+  // モーダルを非表示にする
+  function handleDelete() {
+    onClickDelete();
+    setShowModal(false);
+  }
+
+  function handleCancel() {
+    if(onClickCancel) {
+      onClickCancel();
+    }
+    setShowModal(false);
+  }
+
+  return(
+    <>
+      <IconButton
+        additionalClassNames={classNames(
+          additionalClassNames || "",
+        )}
+        iconClassNames={ iconClassNames }
+        onClick={ () => { setShowModal(true) }}
+      />
       <ConfirmDeleteModal
         isActive={ showModal }
         message={ confirmMessage }

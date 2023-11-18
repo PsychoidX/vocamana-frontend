@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Box } from "@/components/common/box"
 import { IconButton, ButtonsArea } from "../common/button"
 import UpdateSentenceForm from "./update-sentence-form";
+import SentenceDeleteIconButton from "./sentence-delete-icon-button";
 
 export default function EditableSentenceBox(props: {
   sentence: Sentence
@@ -10,7 +11,7 @@ export default function EditableSentenceBox(props: {
   const { sentence } = props;
   const [isEditing, setIsEditing] = useState(false); // 編集中はtrue
   const [latestSentence, setLatestSentence] = useState(sentence); // 更新した場合の最新状態のWordを管理
-
+  const [isVisible, setIsVisible] = useState(true); // trueの間は表示。削除後に非表示にする
   function onAfterSubmit(updatedSentence: Sentence): void {
     setLatestSentence(updatedSentence)
     setIsEditing(false)
@@ -23,8 +24,17 @@ export default function EditableSentenceBox(props: {
         iconClassNames="fa-solid fa-pen"
         onClick={ () => { setIsEditing(true) }}
       />
+      <SentenceDeleteIconButton
+        sentence={ sentence }
+        onAfterDelete={ () => { setIsVisible(false) } }
+      />
     </ButtonsArea>
   )
+
+  // 削除後は空のReactNodeを返す（不可視にする）
+  if(!isVisible) {
+    return <></>
+  }
 
   if(isEditing) {
     return(

@@ -71,3 +71,22 @@ export async function updateSentence(sentenceId: string, sentence: string): Prom
     return null;
   }
 }
+
+export async function deleteSentence(sentenceId: string): Promise<boolean> {
+  if(isNaN(Number(sentenceId))) {
+    console.log(`Error: ${sentenceId} is invalid sentence id.`);
+    return false;
+  }
+
+  try {
+    await axios.delete(`http://localhost:8081/sentences/${sentenceId}`);
+    return true;
+  } catch(err: any) {
+    if(err.response) {
+      console.log(`Error: ${err.message} (${err.response.message})`);
+    } else {
+      console.log(`Error: No Response. ${err.message}`);
+    }
+    return false;
+  }
+}
