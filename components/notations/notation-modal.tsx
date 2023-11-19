@@ -44,6 +44,9 @@ export function NotationModalOpenButton(
   function onClickCloseButton() {
     // Notationが追加・削除された場合、
     // 変更をリンク作成に再反映させるため、画面を再読み込み
+    // 再読み込みされ、allWordNotationListComponentが更新されるため、
+    // createdNotationsは初期化する
+    setCreatedNotations([])
     router.push(`/words/${wordId}`);
     router.refresh();
     setIsActive(false)
