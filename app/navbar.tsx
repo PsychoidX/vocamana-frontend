@@ -14,6 +14,14 @@ export function NavBar() {
         <div className="navbar-start">
           <Link
             className="navbar-item"
+            href="/words"
+          >単語一覧</Link>
+          <Link
+            className="navbar-item"
+            href="/sentences"
+          >文章一覧</Link>
+          <Link
+            className="navbar-item"
             href="/words/new-word-form"
           >単語登録</Link>
           <Link
