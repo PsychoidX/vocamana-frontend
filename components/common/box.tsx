@@ -14,7 +14,7 @@ export function Box(props: BoxProps) {
   if(dangerouslySetContent) {
     contentNode = (
       <div
-        dangerouslySetInnerHTML={{ __html: content }}
+        dangerouslySetInnerHTML={{ __html: replaceLf(content) }}
       ></div>
     );
   } else {
@@ -27,6 +27,11 @@ export function Box(props: BoxProps) {
       { afterContentNode }
     </div>
   )
+}
+
+function replaceLf(text: string) {
+  // \nを<br>に置換
+  return text.replaceAll('\n', '<br>')
 }
 
 export function GrayFlatBox(props: { content: string }) {
