@@ -26,3 +26,7 @@ type Notation = {
   word_id: number;
   notation: string; 
 }
+
+type SentencesCount = {
+  count: number;
+}

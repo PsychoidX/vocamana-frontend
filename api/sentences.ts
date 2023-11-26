@@ -1,9 +1,12 @@
 'use server'
 import axios, { AxiosResponse } from "axios";
 
-export async function getAllSentences(): Promise<Sentence[]> {
+export async function getAllSentences(
+  limit: number,
+  offset: number,
+): Promise<Sentence[]> {
   try {
-    const res: AxiosResponse<Sentence[]> = await axios.get(`http://localhost:8081/sentences`);
+    const res: AxiosResponse<Sentence[]> = await axios.get(`http://localhost:8081/sentences?limit=${limit}&offset=${offset}`);
     const sentences: Sentence[] = res.data;
     if(sentences === null) {
       return [];
@@ -107,5 +110,19 @@ export async function deleteSentence(sentenceId: string): Promise<boolean> {
       console.log(`Error: No Response. ${err.message}`);
     }
     return false;
+  }
+}
+
+export async function getSentencesCount(): Promise<number> {
+  try {
+    const res: AxiosResponse<SentencesCount> = await axios.get(`http://localhost:8081/sentences/count`);
+    return res.data.count;
+  } catch(err: any) {
+    if(err.response) {
+      console.log(`Error: ${err.message} (${err.response.message})`);
+    } else {
+      console.log(`Error: No Response. ${err.message}`);
+    }
+    return 0;
   }
 }

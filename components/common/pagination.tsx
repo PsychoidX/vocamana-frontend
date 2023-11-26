@@ -1,20 +1,12 @@
 'use client'
 import classNames from "classnames";
-import { useSearchParams } from "next/navigation";
 
 export default function Pagination(props: {
   maxPage: number,
+  currentPage: number,
 }) {
-  const { maxPage } = props;
+  const { maxPage, currentPage } = props;
   
-  const searchParams = useSearchParams();
-  const currentPageParam = searchParams.get("page")
-
-  let currentPage = 1;
-  if(!isNaN(Number(currentPageParam))) {
-    currentPage = Number(currentPageParam)
-  }
-
   if(maxPage < 5) {
     // ページ数が5未満の場合、全ページ表示
     // 例：[1][2][3][4]
@@ -31,8 +23,8 @@ export default function Pagination(props: {
         </ul>
       </nav>
     )
-  } else if(currentPage === 1) {
-    // 最初のページを表示中の場合、
+  } else if(currentPage <= 3) {
+    // 最初から3ページ以内を表示中の場合、
     // 最初の3ページを表示し、最後のみ省略
     // 例：[1][2][3]...[10]
     const pages = [1, 2, 3]
